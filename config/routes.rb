@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  resources :comments
   # get 'users/new'
-
   resources :users do
     member do
       get :following, :followers
@@ -8,9 +8,11 @@ Rails.application.routes.draw do
   end
   resources :entries
   resources :sessions, only: [:new, :create, :destroy]
-
+  root  'entries#index'
   match '/signup', to: 'users#new', via: 'get'
   match '/signin',  to: 'sessions#new', via: 'get'
+  match '/signout', to: 'sessions#destroy', via: 'delete'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
