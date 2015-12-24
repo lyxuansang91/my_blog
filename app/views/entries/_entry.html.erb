@@ -1,6 +1,9 @@
-<li>
-  <span class="content"><%= entry.title %></span>
-  <span class="content"><%= entry.body %></span>
+
+  <h1 class='title'><%= entry.title %></h1>
+
+  <h3 class='body'><%= entry.body %></h3>
+
+  <div class="pull-right">
   <span class="timestamp">
     Posted <%= time_ago_in_words(entry.created_at) %> ago.
   </span>
@@ -9,5 +12,5 @@
                                      data: { confirm: "You sure?" },
                                      title: entry.title %>
   <% end %>
-</li>
+  </div>
 

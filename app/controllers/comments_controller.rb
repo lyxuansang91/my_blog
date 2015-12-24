@@ -3,8 +3,6 @@ class CommentsController < ApplicationController
   before_action :signed_in_user, only: [:create]
 
   def show
-    # @entry = Entry.find(params[:id])
-    # @comment = Comment.new
   end
 
   def create
@@ -13,7 +11,7 @@ class CommentsController < ApplicationController
     #byebug
     @comment = @entry.comments.build(params.require(:comment).permit!)
     if current_user?(@user) || current_user.followed_users.include?(@user)
-      flash[:sucess] = "Comment is posted successfully"
+      flash[:success] = "Comment is posted successfully"
       @comment.save
 
     else

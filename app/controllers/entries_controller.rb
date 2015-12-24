@@ -13,6 +13,7 @@ class EntriesController < ApplicationController
   # GET /entries/1.json
   def show
     @entry = Entry.find(params[:id])
+    @comments = @entry.comments.paginate(:page =>  params[:page], :per_page =>  3).order('created_at DESC')
     @comment = Comment.new
   end
 

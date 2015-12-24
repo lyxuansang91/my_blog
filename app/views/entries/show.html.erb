@@ -1,16 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<!-- <p>
-  <strong>Title:</strong>
-  <%= @entry.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @entry.body %>
-</p> -->
-
-<!-- Hello world -->
 
 <%= render :partial => @entry %>
 
@@ -22,7 +11,8 @@
 
 <h2>Comments</h2>
 <div id="comments">
-  <%= render :partial => @entry.comments %>
+  <%= render :partial => @comments %>
+  <%= will_paginate @comments %>
 </div>
 
 
