@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
-  resources :comments
+
   # get 'users/new'
   resources :users do
-    member do
-      get :following, :followers
-    end
+     member do
+       get :following, :followers
+     end
   end
-  resources :entries
+
+  resources :entries do
+    resources :comments
+  end
   resources :sessions, only: [:new, :create, :destroy]
   root  'entries#index'
   match '/signup', to: 'users#new', via: 'get'

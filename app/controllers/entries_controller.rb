@@ -5,12 +5,15 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-    @entries = Entry.all
+    @entries = signed_in? ? Entry.from_users_followed_by(current_user) : Entry.all
+    # byebug
   end
 
   # GET /entries/1
   # GET /entries/1.json
   def show
+    @entry = Entry.find(params[:id])
+    @comment = Comment.new
   end
 
   # GET /entries/new
@@ -25,17 +28,23 @@ class EntriesController < ApplicationController
   # POST /entries
   # POST /entries.json
   def create
-    @entry = Entry.new(entry_params)
-
-    respond_to do |format|
-      if @entry.save
-        format.html { redirect_to @entry, notice: 'Entry was successfully created.' }
-        format.json { render :show, status: :created, location: @entry }
-      else
-        format.html { render :new }
-        format.json { render json: @entry.errors, status: :unprocessable_entity }
-      end
+    @entry = current_user.entries.build(entry_params)
+    if @entry.save
+      redirect_to @entry, notice: 'Entry was successfully created.'
+    else
+      render :new
     end
+    # Format code
+    #
+    # respond_to do |format|
+    #   if @entry.save
+    #     format.html { redirect_to @entry, notice: 'Entry was successfully created.' }
+    #     format.json { render :show, status: :created, location: @entry }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @entry.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /entries/1

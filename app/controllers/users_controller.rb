@@ -6,6 +6,20 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    # @user = User.find(params[:id])
+    # byebug
+    # @entries = @user.entries.paginate(page:params[:page])
+  end
+
+  def following
+
+  end
+
+  def followers
+  end
+
+
 
   def create
     @user = User.new(user_params)
