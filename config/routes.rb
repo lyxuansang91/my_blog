@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :comments
   end
   resources :sessions, only: [:new, :create, :destroy]
+  resources :relationships, only: [:create, :destroy]
   root  'entries#index'
   match '/signup', to: 'users#new', via: 'get'
   match '/signin',  to: 'sessions#new', via: 'get'

@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(email: params[:session][:email])
-    if @user.authenticate(params[:session][:password])
+    if !@user.nil? && @user.authenticate(params[:session][:password])
       #byebug
       sign_in @user
       flash[:sucess] = "Sign in successfully!"

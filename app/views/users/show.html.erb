@@ -10,10 +10,11 @@
   </aside>
 
   <div class="col-md-8">
-  <%#= render 'follow_form' if signed_in? %>
+  <%# byebug %>
+  <%= render 'follow_form' if signed_in? %>
     <% if @user.entries.any? %>
       <h3>Entries (<%= @user.entries.count %>)</h3>
-      <ol class="microposts">
+      <ol class="entries">
         <%= render @entries %>
       </ol>
       <%= will_paginate @entries %>

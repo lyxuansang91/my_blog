@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
     relationships.find_by(followed_id: other_user.id).destroy!
   end
 
+  def index
+    @user = User.all
+  end
+
 
   private
 

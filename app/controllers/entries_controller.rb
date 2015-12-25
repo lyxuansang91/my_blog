@@ -5,7 +5,8 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-    @entries = signed_in? ? Entry.from_users_followed_by(current_user) : Entry.all
+    @feeds = signed_in? ? current_user.feed() : Entry.all
+    @entries = @feeds.paginate(:page => params[:page], :per_page => 3).order('created_at DESC')
     # byebug
   end
 

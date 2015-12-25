@@ -1,9 +1,8 @@
 
-  <h1 class='title'><%= entry.title %></h1>
+  <h1 style="text-decoration: none"><%= link_to(entry.title, entry) %></h1>
 
-  <h3 class='body'><%= entry.body %></h3>
-
-  <div class="pull-right">
+  <h5><%= entry.body %></h5>
+  <br />
   <span class="timestamp">
     Posted <%= time_ago_in_words(entry.created_at) %> ago.
   </span>
@@ -12,5 +11,5 @@
                                      data: { confirm: "You sure?" },
                                      title: entry.title %>
   <% end %>
-  </div>
+
 
